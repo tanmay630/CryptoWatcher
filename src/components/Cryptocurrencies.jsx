@@ -1,13 +1,17 @@
-import { Grid } from '@nextui-org/react';
+
 import React, {useState, useEffect} from 'react'
-import Cards from './card';
+import {Card, Text, Grid, Row, Divider} from '@nextui-org/react';
 import axios from 'axios';
+import '../components/Cryptocurrencies.css';
+import millify from 'millify';
+import News from '../components/News';
 
 
-const  Cryptocurrencies = () =>  {
+const  Cryptocurrencies = ({simplified}) =>  {
   const [coindata, setcoindata] = useState([]);
+  const count = simplified ? 10 : 100;
   const fetchcoins = async () => {
-     const basecoinurl = "https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers=1&orderBy=marketCap&orderDirection=desc&limit=50&offset=0";
+     const basecoinurl = `https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers=1&orderBy=marketCap&orderDirection=desc&limit=${count}&offset=0`;
           try {
              axios.get(basecoinurl,{
 
@@ -32,20 +36,33 @@ const  Cryptocurrencies = () =>  {
     },[])
  
   return (
+    <>
         <div className='cards-container'>
        <Grid.Container gap={5}>
-
                   {coindata.map((item) => (
                     <Grid xs={12} md={3} >
-                        <Cards item={item} />  
+                          <Card css={{mw: "250px"}} hoverable>
+              <Card.Header>
+                <Text>{item.name}</Text>
+                <Row justify='flex-end'>
+                  <img src={item.iconUrl} alt="image" className='image-container'/>
+                </Row>
+              </Card.Header>
+              <Divider/>
+              <Card.Body>
+                <a className='stats-text'>Price: {millify(item.price)}</a>
+                <a className='stats-text'>MarketCap: {millify(item.marketCap)}</a> 
+                <a className='stats-text' >Dailychanges: {millify(item.change)}</a>
+              </Card.Body>
+                  </Card>
                     </Grid>
                   ))};
-                      
-             
-         
        </Grid.Container>
          </div>
-
+         
+          
+      </>   
+            
   )
 }
 

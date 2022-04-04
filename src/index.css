@@ -1,24 +1,20 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap');
 
 
 body {
 
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Nunito', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('https://cdn.pixabay.com/photo/2020/09/23/19/58/halloween-5596921_1280.jpg');
+  background-image: url("https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/thumbimg_25361957thumbejpg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed; 
-
-
-
-
+  backdrop-filter: blur(20px); 
+ 
+  
+ 
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -26,110 +22,3 @@ code {
 }
 
 
-.app_navbar {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin: 10px;
-  margin-left: 40px;
-  position: fixed;
-  top: 0px;
-  z-index:1;
- 
-
-}
-
-.logo-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.test {
-  color: palegreen;
-}
-
-
-.app__navbar-links {
-
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  list-style: none;
-  margin-left: 50px;
-  margin-right: 100px;
-  height: 50px;
-  border-radius: 15px;
-  
-
-  }
-
- .text-decoration {
-  
-  color: aliceblue;
-  
-  font-size: 1.8em;
-  font-weight: 1000;
-  
- }
-
-.test {
-  color: #cf23cf;
-}
-
-a {
-  text-decoration: none;
-  flex-direction: column;
-  font-family: sans-serif;
-  color: rgb(80, 168, 80);
-  text-transform: uppercase;
-  font-weight: bolder;
-}
-
-a:hover {
-  color: aliceblue;
-  text-shadow: 0 0 80px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%);
-}
-
-
-li {
-  margin: 0 1rem;
-  cursor: pointer;
-}
-
-.logo {
-  width: 50px;
-  height: 50px;
-  margin: 5px;
-  margin-left: 100px;
-
-}
-
-.image-container {
-  margin: 20px;
-  width: 40px;
-  height: 40px;
-  
-}
-
-p {
-  color: rgb(69, 131, 185);
-  font-size: 30px;
-}
-
-.stats-container {
-  margin: 70px;
-  backdrop-filter: blur(20px);
-  padding: 20px;
-  padding-left: 150px;
-  border-radius: 22px;
- 
-}
-
-.cards-container {
-
-  margin: 20px;
-  margin-left: 90px;
-}

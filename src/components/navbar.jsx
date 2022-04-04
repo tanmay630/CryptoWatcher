@@ -1,21 +1,25 @@
 import React from 'react';
-import logo from '../assets/logo.png';
-
+import '../components/navbar.css';
 import { NextUIProvider, Text } from '@nextui-org/react';
+import { Link } from 'react-router-dom';
+
+
+
 function navbar() {
   return (
-      <nav className="app_navbar">
-       <div className="logo-container">
-         <img src={logo} alt="logo" className="logo"/>
-          <h2 className="text-decoration">Cryptowatcher</h2>
-       </div>
-       <ul className="app__navbar-links ">
-         <li><a href="home">Home</a></li>
-         <li><a href="crpto">crytocurrencies</a></li>
-         <li><a href="exchanges">exchanges</a></li>
-         <li><a href="news">news</a></li>
-       </ul>
-      </nav>
+   <div className='nav-container'>
+        <Text h1 size={30}>
+          <Link to= "/">CryptoWatcher</Link>      
+        </Text>
+        
+            <nav  className='nav-links-container'>
+              <Link to = "/">Home</Link>
+              <Link to = "/cryptocurrencies">CryptoCurrencies</Link>
+              <Link to = "/news">News</Link>   
+           
+            </nav>
+          
+    </div>
   )
 }
 

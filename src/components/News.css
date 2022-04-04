@@ -1,0 +1,42 @@
+
+.news-card {
+  
+
+  overflow: hidden;
+
+}
+
+.news-image-container {
+    display: flex;
+    justify-content: space-between;
+
+}
+ 
+.news-img {
+    margin-right: 40px;
+}
+
+.news-title {
+    color: black;
+}
+
+
+.description {
+    color: black;
+}
+
+.provider-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom-img {
+    
+    width: 50px;
+    border-radius: 20px;
+
+}
+
+h4 {
+    margin-right: 40px;
+}
