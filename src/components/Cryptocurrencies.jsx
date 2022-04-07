@@ -1,6 +1,6 @@
 
 import React, {useState, useEffect} from 'react'
-import {Card, Text, Grid, Row, Divider} from '@nextui-org/react';
+import {Card, Text, Grid, Row, Divider, Input} from '@nextui-org/react';
 import axios from 'axios';
 import '../components/Cryptocurrencies.css';
 import millify from 'millify';
@@ -9,9 +9,12 @@ import News from '../components/News';
 
 const  Cryptocurrencies = ({simplified}) =>  {
   const [coindata, setcoindata] = useState([]);
+  const [searchterm, setsearchterm] = useState('');
   const count = simplified ? 10 : 100;
-  const fetchcoins = async () => {
-     const basecoinurl = `https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers=1&orderBy=marketCap&orderDirection=desc&limit=${count}&offset=0`;
+  const basecoinurl = `https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers=1&orderBy=marketCap&orderDirection=desc&limit=${count}&offset=0`;
+  
+  
+  const fetchcoins = async () => {   
           try {
              axios.get(basecoinurl,{
 
@@ -24,7 +27,6 @@ const  Cryptocurrencies = ({simplified}) =>  {
               setcoindata(response.data.data.coins);
               console.log(coindata);
             })
-
           } catch(error) {
             console.log(error);
           }   
@@ -34,10 +36,41 @@ const  Cryptocurrencies = ({simplified}) =>  {
       fetchcoins()
       
     },[])
+     
+    const filteredData = coindata?.filter((coin) => coin.name.toLowerCase().includes(searchterm.toLowerCase()));
+   
  
   return (
-    <>
-        <div className='cards-container'>
+    <> 
+
+      {!simplified ? <div className='search-crypto'>
+        <Input placeholder='Search Cryptocurrency' onChange={(e) => setsearchterm(e.target.value)}/>
+     </div> :  "" }
+    
+         
+
+       {searchterm ?   <div className='cards-container'>
+       <Grid.Container gap={5}>
+                  {filteredData.map((item) => (
+                    <Grid xs={12} md={3} >
+                          <Card css={{mw: "250px"}} hoverable>
+              <Card.Header>
+                <Text>{item.name}</Text>
+                <Row justify='flex-end'>
+                  <img src={item.iconUrl} alt="image" className='image-container'/>
+                </Row>
+              </Card.Header>
+              <Divider/>
+              <Card.Body>
+                <a className='stats-text'>Price: {millify(item.price)}</a>
+                <a className='stats-text'>MarketCap: {millify(item.marketCap)}</a> 
+                <a className='stats-text' >Dailychanges: {millify(item.change)}</a>
+              </Card.Body>
+                  </Card>
+                    </Grid>
+                  ))};
+       </Grid.Container>
+         </div> :    <div className='cards-container'>
        <Grid.Container gap={5}>
                   {coindata.map((item) => (
                     <Grid xs={12} md={3} >
@@ -58,7 +91,11 @@ const  Cryptocurrencies = ({simplified}) =>  {
                     </Grid>
                   ))};
        </Grid.Container>
-         </div>
+         </div> }
+
+
+
+      
          
           
       </>   

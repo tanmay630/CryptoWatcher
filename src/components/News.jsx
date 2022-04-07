@@ -1,4 +1,4 @@
-import { Grid, Row, Col, Card  } from '@nextui-org/react';
+import { Grid, Row, Col, Card, Input } from '@nextui-org/react';
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import moment from 'moment';
@@ -6,9 +6,9 @@ import '../components/News.css';
 
 const News = ({simplified}) => {
     
-   const [newsdata, setnewsdata] = useState({});
+    const [newsdata, setnewsdata] = useState({});
     const count = simplified ? 8 : 100; 
-   const fetchnews = async () => {
+    const fetchnews = async () => {
 
      const basenewsurl = 'https://bing-news-search1.p.rapidapi.com/news/search';
               try {
@@ -35,6 +35,8 @@ const News = ({simplified}) => {
     fetchnews()
   },[])
  
+  
+
   if(!newsdata?.value) return '..loading';
  
   return (
